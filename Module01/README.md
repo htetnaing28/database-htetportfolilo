@@ -6,3 +6,6 @@ Set up the entire toolchain reproducibly with uv — one fixed Python plus SQLit
 Explain — with a measurement, not a slide — the difference between an embedded database and a client/server database, and why most local apps should not run a server.
 Load real rows into SQLite and query them from Python using bound parameters.
 Take a first LLM-generated query, run it, and begin the habit that defines this course: verify before you trust.
+### Task 4 — SQLite Shell Reflection
+
+I found the `.schema` command most useful because it shows the structure of a table and helps me understand its columns and data types.
