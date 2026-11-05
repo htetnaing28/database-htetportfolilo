@@ -1,16 +1,14 @@
-# Python virtual environment
+# Python environment
 .venv/
-
-# Python cache
 __pycache__/
 *.pyc
 
-# Local SQLite databases
+# SQLite databases
 *.db
 *.db-journal
 *.db-wal
 *.db-shm
 
-# Environment secrets
+# Secrets
 .env
 .env.*
