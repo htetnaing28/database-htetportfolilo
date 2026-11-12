@@ -1,0 +1,5 @@
+[{"ts":"2026-01-05 06:00:00","machine":"cnc-01","temp_c":41.91,"vib_rms":1.186,"spindle_load":59.7},
+{"ts":"2026-01-05 06:00:00","machine":"cnc-02","temp_c":42.42,"vib_rms":1.125,"spindle_load":54.3},
+{"ts":"2026-01-05 06:00:00","machine":"cnc-03","temp_c":41.87,"vib_rms":1.209,"spindle_load":60.7},
+{"ts":"2026-01-05 06:00:03","machine":"cnc-01","temp_c":42.7,"vib_rms":1.241,"spindle_load":64.2},
+{"ts":"2026-01-05 06:00:03","machine":"cnc-02","temp_c":42.15,"vib_rms":1.309,"spindle_load":60.2}]
