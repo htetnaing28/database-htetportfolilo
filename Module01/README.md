@@ -1,11 +1,20 @@
-By the end of this module, you can:
+## Module 01 — Practical Work
 
-Explain how this class works — the CBL/PBL philosophy, the portfolio-based project work assessment, and the "moving bar" of a first-time course.
-Set up your personal GitHub portfolio from the course template, with a clean first commit and a .gitignore that keeps databases and secrets out of Git.
-Set up the entire toolchain reproducibly with uv — one fixed Python plus SQLite, DuckDB, Datasette, and more — on Windows, macOS, or Linux, and verify it.
-Explain — with a measurement, not a slide — the difference between an embedded database and a client/server database, and why most local apps should not run a server.
-Load real rows into SQLite and query them from Python using bound parameters.
-Take a first LLM-generated query, run it, and begin the habit that defines this course: verify before you trust.
-### Task 4 — SQLite Shell Reflection
+### Task 7 — LLM SQL Verification
+[LLM SQL Verification](./llm-sql-verification.md)
 
-I found the `.schema` command most useful because it shows the structure of a table and helps me understand its columns and data types.
+### Task 8 — Datasette Publishing
+[Datasette Publishing](./datasette-publishing.md)
+
+### Task 9 — SQLite Shell Power Moves
+[SQLite Shell Documentation](./shell-power.md)
+
+### Task 10 — Datasette Filters and JSON API
+[Datasette Documentation](./datasette.md)
+
+### Task 11 — Datasette Lite and SQLite Toolbox
+[SQLite Toolbox Documentation](./toolbox.md)
+## Course Resources
+
+- [HSBI Databases Course Syllabus](https://github.com/iotempire/iotempire-teaching/blob/main/full-classes/hsbi-databases-10d/syllabus.md)
+- [Main Portfolio README](../README.md)
