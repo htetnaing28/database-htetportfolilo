@@ -1,0 +1,264 @@
+{
+  "anomalies": {
+    "update_inconsistent_sites": [
+      [
+        "Bielefeld"
+      ],
+      [
+        "Gütersloh"
+      ]
+    ],
+    "insert_requires_missing_job": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "P-new",
+        10.0
+      ]
+    ],
+    "delete": "Deleting job 1/P-0002 loses the only stored P-0002 price"
+  },
+  "counts": {
+    "flat_jobpart": 200000,
+    "machine": 50,
+    "part": 10,
+    "job": 20000,
+    "job_part": 200000,
+    "report_jobpart": 200000
+  },
+  "normalized": {
+    "sql": "SELECT m.machine_id,m.site,j.technician,SUM(p.part_price) FROM job j\nJOIN machine m USING(machine_id) JOIN job_part jp USING(job_id) JOIN part p USING(part_no)\nWHERE j.done_on >= '2026-03-01' GROUP BY m.machine_id,m.site,j.technician ORDER BY m.machine_id,j.technician",
+    "parameters": [],
+    "plan": [
+      [
+        14,
+        0,
+        216,
+        "SCAN jp"
+      ],
+      [
+        16,
+        0,
+        45,
+        "SEARCH j USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        21,
+        0,
+        47,
+        "SEARCH m USING INDEX sqlite_autoindex_machine_1 (machine_id=?)"
+      ],
+      [
+        26,
+        0,
+        47,
+        "SEARCH p USING INDEX sqlite_autoindex_part_1 (part_no=?)"
+      ],
+      [
+        32,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        79,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      120.24419999215752,
+      155.44050000607967,
+      153.71019998565316,
+      153.02189998328686,
+      121.52400001650676
+    ],
+    "median_ms": 153.02189998328686,
+    "min_ms": 120.24419999215752,
+    "max_ms": 155.44050000607967
+  },
+  "report_index": {
+    "sql": "SELECT machine_id,site,technician,SUM(part_price) FROM report_jobpart WHERE done_on >= '2026-03-01' GROUP BY machine_id,site,technician ORDER BY machine_id,technician",
+    "parameters": [],
+    "plan": [
+      [
+        8,
+        0,
+        224,
+        "SCAN report_jobpart USING INDEX ix_report_machine"
+      ],
+      [
+        13,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        60,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      137.91869999840856,
+      134.6013000002131,
+      136.5708999801427,
+      141.59910002490506,
+      136.00959995528683
+    ],
+    "median_ms": 136.5708999801427,
+    "min_ms": 134.6013000002131,
+    "max_ms": 141.59910002490506
+  },
+  "interleaved": {
+    "normalized": {
+      "samples_ms": [
+        119.39520004671067,
+        114.59740001009777,
+        111.34469998069108,
+        114.22719998518005,
+        112.14169999584556
+      ],
+      "median_ms": 114.22719998518005,
+      "min_ms": 111.34469998069108,
+      "max_ms": 119.39520004671067
+    },
+    "report": {
+      "samples_ms": [
+        136.59139996161684,
+        141.04509999742731,
+        129.63999999919906,
+        130.28840004699305,
+        128.83860000874847
+      ],
+      "median_ms": 130.28840004699305,
+      "min_ms": 128.83860000874847,
+      "max_ms": 141.04509999742731
+    }
+  },
+  "report_no_index": {
+    "sql": "SELECT machine_id,site,technician,SUM(part_price) FROM report_jobpart WHERE done_on >= '2026-03-01' GROUP BY machine_id,site,technician ORDER BY machine_id,technician",
+    "parameters": [],
+    "plan": [
+      [
+        8,
+        0,
+        224,
+        "SCAN report_jobpart USING INDEX ix_report_machine"
+      ],
+      [
+        13,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        60,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      95.80509999068454,
+      92.89089997764677,
+      92.95530000235885,
+      90.86170000955462,
+      87.49649999663234
+    ],
+    "median_ms": 92.89089997764677,
+    "min_ms": 87.49649999663234,
+    "max_ms": 95.80509999068454
+  },
+  "updates": {
+    "machine": {
+      "rows": 1,
+      "samples_ms": [
+        1.5147000085562468,
+        1.036300032865256,
+        1.034499960951507,
+        0.8458999800495803,
+        0.805900024715811
+      ],
+      "median_ms": 1.034499960951507,
+      "min_ms": 0.805900024715811,
+      "max_ms": 1.5147000085562468,
+      "transaction": "execution only; rolled back to preserve baseline"
+    },
+    "report_jobpart": {
+      "rows": 4000,
+      "samples_ms": [
+        23.255000007338822,
+        16.70960005139932,
+        17.14939996600151,
+        15.61010000295937,
+        18.168599985074252
+      ],
+      "median_ms": 17.14939996600151,
+      "min_ms": 15.61010000295937,
+      "max_ms": 23.255000007338822,
+      "transaction": "execution only; rolled back to preserve baseline"
+    }
+  },
+  "storage_pages_bytes": [
+    [
+      "flat_jobpart",
+      11890688
+    ],
+    [
+      "ix_flat_machine",
+      2990080
+    ],
+    [
+      "ix_report_machine",
+      2990080
+    ],
+    [
+      "job",
+      655360
+    ],
+    [
+      "job_part",
+      3407872
+    ],
+    [
+      "machine",
+      4096
+    ],
+    [
+      "part",
+      4096
+    ],
+    [
+      "report_jobpart",
+      11091968
+    ],
+    [
+      "sqlite_autoindex_job_part_1",
+      4087808
+    ],
+    [
+      "sqlite_autoindex_machine_1",
+      4096
+    ],
+    [
+      "sqlite_autoindex_part_1",
+      4096
+    ],
+    [
+      "sqlite_schema",
+      4096
+    ]
+  ],
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T19:02:06.125494+00:00"
+  }
+}
