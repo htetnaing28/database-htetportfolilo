@@ -1,0 +1,153 @@
+{
+  "errors": [
+    {
+      "sql": "INSERT INTO reading(sensor_id,ts,value,interval_s) VALUES (?,?,?,?)",
+      "parameters": [
+        1,
+        "bad1",
+        9000,
+        1
+      ],
+      "error": "CHECK constraint failed: value >= -273.15 AND value <= 5000"
+    },
+    {
+      "sql": "INSERT INTO reading(sensor_id,ts,value,interval_s) VALUES (?,?,?,?)",
+      "parameters": [
+        1,
+        "bad2",
+        "hot",
+        1
+      ],
+      "error": "cannot store TEXT value in REAL column reading.value"
+    },
+    {
+      "sql": "INSERT INTO reading(sensor_id,ts,value,interval_s) VALUES (?,?,?,?)",
+      "parameters": [
+        99,
+        "bad3",
+        40,
+        1
+      ],
+      "error": "FOREIGN KEY constraint failed"
+    },
+    {
+      "sql": "INSERT INTO reading(sensor_id,ts,value,interval_s) VALUES (?,?,?,?)",
+      "parameters": [
+        1,
+        "bad4",
+        null,
+        1
+      ],
+      "error": "NOT NULL constraint failed: reading.value"
+    },
+    {
+      "sql": "INSERT INTO reading(sensor_id,ts,value,interval_s) VALUES (?,?,?,?)",
+      "parameters": [
+        1,
+        "bad5",
+        40,
+        0
+      ],
+      "error": "CHECK constraint failed: interval_s > 0"
+    },
+    {
+      "sql": "INSERT INTO sensor VALUES(3,'cnc-01','temp_c','degC')",
+      "parameters": [],
+      "error": "UNIQUE constraint failed: sensor.machine_id, sensor.metric"
+    }
+  ],
+  "generated": 41.5,
+  "replay_count": 2,
+  "alarms": [
+    [
+      1,
+      2,
+      "2026-03-01 09:00:00",
+      2.7,
+      "vibration over 2.0 mm/s"
+    ]
+  ],
+  "audits": [
+    [
+      1,
+      1,
+      41.5,
+      41.7,
+      "2026-11-15 19:01:58"
+    ],
+    [
+      2,
+      1,
+      41.7,
+      41.7,
+      "2026-11-15 19:01:58"
+    ],
+    [
+      3,
+      2,
+      2.7,
+      2.7,
+      "2026-11-15 19:01:58"
+    ],
+    [
+      4,
+      2,
+      2.7,
+      1.4,
+      "2026-11-15 19:01:58"
+    ]
+  ],
+  "trigger_10000_rows": {
+    "False": {
+      "samples_ms": [
+        40.27629998745397,
+        40.612900047563016,
+        42.084200016688555,
+        39.93169998284429,
+        38.75269996933639
+      ],
+      "median_ms": 40.27629998745397,
+      "min_ms": 38.75269996933639,
+      "max_ms": 42.084200016688555
+    },
+    "True": {
+      "samples_ms": [
+        59.65970002580434,
+        63.92530002631247,
+        63.54430003557354,
+        55.460000003222376,
+        62.19730002339929
+      ],
+      "median_ms": 62.19730002339929,
+      "min_ms": 55.460000003222376,
+      "max_ms": 63.92530002631247
+    }
+  },
+  "readonly": {
+    "sql": "DELETE FROM reading",
+    "parameters": [],
+    "error": "attempt to write a readonly database"
+  },
+  "view": [
+    [
+      "cnc-01",
+      "temp_c",
+      41.7,
+      1
+    ],
+    [
+      "cnc-01",
+      "vib_rms",
+      1.4,
+      1
+    ]
+  ],
+  "null_check": "NULL accepted without NOT NULL",
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T19:01:59.819731+00:00"
+  }
+}
