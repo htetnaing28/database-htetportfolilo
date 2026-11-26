@@ -1,5 +1,9 @@
 ## Module 01 — Practical Work
 
+### Task: Personal Profile
+
+[STUDENT INPUT REQUIRED: Enter your programming, SQL, Python, command-line and Git experience, previous databases, expectations and actual pod membership.]
+
 ### Task 7 — LLM SQL Verification
 [LLM SQL Verification](./llm-sql-verification.md)
 
@@ -18,3 +22,8 @@
 
 - [HSBI Databases Course Syllabus](https://github.com/iotempire/iotempire-teaching/blob/main/full-classes/hsbi-databases-10d/syllabus.md)
 - [Main Portfolio README](../README.md)
+
+
+## Verified technical implementation
+
+See [execution instructions, evidence and student tasks](TECHNICAL.md).

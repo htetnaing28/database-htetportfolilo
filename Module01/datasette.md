@@ -108,3 +108,8 @@ JSON is useful for APIs and applications.
 I found Datasette easier for visually exploring data than using only the SQLite command-line interface.
 
 The most interesting feature was the JSON API because the same database information can be accessed by both humans and computer programs.
+## 9. Datasette Facet Screenshot
+
+The screenshot below shows the number of readings for each CNC machine.
+
+![Datasette machine facet results](./pictures/datasette-facet.png)

@@ -1,0 +1,218 @@
+{
+  "counts": {
+    "sql": "SELECT machine,COUNT(*) FROM readings GROUP BY machine",
+    "parameters": [],
+    "plan": [
+      [
+        6,
+        0,
+        216,
+        "SCAN readings"
+      ],
+      [
+        8,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ]
+    ],
+    "samples_ms": [
+      106.46870004711673,
+      123.66809998638928,
+      106.99349996866658,
+      99.48709997115657,
+      110.10799999348819
+    ],
+    "median_ms": 106.99349996866658,
+    "min_ms": 99.48709997115657,
+    "max_ms": 123.66809998638928,
+    "rows": [
+      [
+        "cnc-01",
+        57600
+      ],
+      [
+        "cnc-02",
+        57600
+      ],
+      [
+        "cnc-03",
+        57600
+      ]
+    ]
+  },
+  "peaks": {
+    "sql": "SELECT machine,MAX(vib_rms) FROM readings GROUP BY machine",
+    "parameters": [],
+    "plan": [
+      [
+        6,
+        0,
+        216,
+        "SCAN readings"
+      ],
+      [
+        8,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ]
+    ],
+    "samples_ms": [
+      116.37900001369417,
+      104.52369996346533,
+      103.20349998073652,
+      116.32380000082776,
+      113.93749999115244
+    ],
+    "median_ms": 113.93749999115244,
+    "min_ms": 103.20349998073652,
+    "max_ms": 116.37900001369417,
+    "rows": [
+      [
+        "cnc-01",
+        2.398
+      ],
+      [
+        "cnc-02",
+        3.168
+      ],
+      [
+        "cnc-03",
+        2.55
+      ]
+    ]
+  },
+  "alarms": {
+    "sql": "SELECT COUNT(*) FROM readings WHERE vib_rms > ?",
+    "parameters": [
+      2.0
+    ],
+    "plan": [
+      [
+        3,
+        0,
+        216,
+        "SCAN readings"
+      ]
+    ],
+    "samples_ms": [
+      20.53029998205602,
+      21.039099956396967,
+      21.106400003191084,
+      21.70230000047013,
+      21.18859998881817
+    ],
+    "median_ms": 21.106400003191084,
+    "min_ms": 20.53029998205602,
+    "max_ms": 21.70230000047013,
+    "rows": [
+      [
+        11714
+      ]
+    ]
+  },
+  "literal_evening": {
+    "sql": "SELECT machine,AVG(spindle_load) FROM readings WHERE time(ts) > '18:00:00' GROUP BY machine ORDER BY AVG(spindle_load) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        7,
+        0,
+        216,
+        "SCAN readings"
+      ],
+      [
+        12,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        51,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      56.97550001787022,
+      56.383199989795685,
+      55.797999957576394,
+      55.5867999792099,
+      54.24610001500696
+    ],
+    "median_ms": 55.797999957576394,
+    "min_ms": 54.24610001500696,
+    "max_ms": 56.97550001787022,
+    "rows": [
+      [
+        "cnc-03",
+        60.4340394499236
+      ],
+      [
+        "cnc-01",
+        60.36845395193777
+      ],
+      [
+        "cnc-02",
+        60.35721628003889
+      ]
+    ]
+  },
+  "overnight": {
+    "sql": "SELECT machine,AVG(spindle_load) FROM readings WHERE time(ts) > '18:00:00' OR time(ts) < '06:00:00' GROUP BY machine ORDER BY AVG(spindle_load) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        7,
+        0,
+        216,
+        "SCAN readings"
+      ],
+      [
+        15,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        54,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      95.56590003194287,
+      99.45109998807311,
+      95.94899998046458,
+      96.71269997488707,
+      94.15229997830465
+    ],
+    "median_ms": 95.94899998046458,
+    "min_ms": 94.15229997830465,
+    "max_ms": 99.45109998807311,
+    "rows": [
+      [
+        "cnc-02",
+        60.20597263698868
+      ],
+      [
+        "cnc-03",
+        60.20287867213001
+      ],
+      [
+        "cnc-01",
+        60.18555455239947
+      ]
+    ]
+  },
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T18:59:22.923480+00:00"
+  }
+}
