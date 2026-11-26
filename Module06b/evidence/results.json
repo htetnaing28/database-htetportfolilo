@@ -1,0 +1,169 @@
+{
+  "json_extract": [
+    [
+      "cnc-01",
+      "Siemens"
+    ],
+    [
+      "cnc-02",
+      "Fanuc"
+    ],
+    [
+      "molder-07",
+      "Arburg"
+    ]
+  ],
+  "arrow": [
+    [
+      "cnc-01",
+      "4.2"
+    ],
+    [
+      "cnc-02",
+      "3.9"
+    ],
+    [
+      "molder-07",
+      "8.1"
+    ]
+  ],
+  "json_each": [
+    [
+      "cnc-01",
+      "vendor",
+      "Siemens"
+    ],
+    [
+      "cnc-01",
+      "firmware",
+      "4.2"
+    ],
+    [
+      "cnc-01",
+      "calibrated",
+      "2026-01-10"
+    ]
+  ],
+  "indexed": {
+    "sql": "SELECT name FROM device WHERE json_extract(meta,'$.vendor')=?",
+    "parameters": [
+      "Fanuc"
+    ],
+    "plan": [
+      [
+        3,
+        0,
+        61,
+        "SEARCH device USING INDEX ix_device_vendor (<expr>=?)"
+      ]
+    ],
+    "samples_ms": [
+      0.011400028597563505,
+      0.006200047209858894,
+      0.005299982149153948,
+      0.004999979864805937,
+      0.005699985194951296
+    ],
+    "median_ms": 0.005699985194951296,
+    "min_ms": 0.004999979864805937,
+    "max_ms": 0.011400028597563505
+  },
+  "shorthand": {
+    "sql": "SELECT name FROM device WHERE meta ->> 'vendor'=?",
+    "parameters": [
+      "Fanuc"
+    ],
+    "plan": [
+      [
+        2,
+        0,
+        216,
+        "SCAN device"
+      ]
+    ],
+    "samples_ms": [
+      0.005599984433501959,
+      0.004299974534660578,
+      0.004100031219422817,
+      0.004199973773211241,
+      0.004499976057559252
+    ],
+    "median_ms": 0.004299974534660578,
+    "min_ms": 0.004100031219422817,
+    "max_ms": 0.005599984433501959
+  },
+  "invalid": {
+    "sql": "INSERT INTO device(name,meta) VALUES(?,?)",
+    "parameters": [
+      "invalid",
+      "{broken"
+    ],
+    "error": "CHECK constraint failed: json_valid(meta)"
+  },
+  "sessions": {
+    "shelve_set": {
+      "samples_ms": [
+        26707.73319998989,
+        26380.85710001178,
+        26508.394000004046
+      ],
+      "median_ms": 26508.394000004046,
+      "min_ms": 26380.85710001178,
+      "max_ms": 26707.73319998989
+    },
+    "shelve_get": {
+      "samples_ms": [
+        551.925299980212,
+        537.2159999678843,
+        542.4354000133462
+      ],
+      "median_ms": 542.4354000133462,
+      "min_ms": 537.2159999678843,
+      "max_ms": 551.925299980212
+    },
+    "sqlite_set": {
+      "samples_ms": [
+        110.60729995369911,
+        113.19430003641173,
+        113.42720000538975
+      ],
+      "median_ms": 113.19430003641173,
+      "min_ms": 110.60729995369911,
+      "max_ms": 113.42720000538975
+    },
+    "sqlite_get": {
+      "samples_ms": [
+        3770.813899987843,
+        4034.8671000101604,
+        3783.103400026448
+      ],
+      "median_ms": 3783.103400026448,
+      "min_ms": 3770.813899987843,
+      "max_ms": 4034.8671000101604
+    }
+  },
+  "backend": "dbm.sqlite3._Database",
+  "storage": [
+    {
+      "sessions.db": 3321856,
+      "shelf": 4083712
+    },
+    {
+      "sessions.db": 3321856,
+      "shelf": 4083712
+    },
+    {
+      "sessions.db": 3321856,
+      "shelf": 4083712
+    }
+  ],
+  "cross_session_city_1": 12500,
+  "durability_note": "shelve sync vs one SQLite committed batch; not equivalent crash guarantees; reads warm after writes",
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T19:07:50.327834+00:00"
+  }
+}
