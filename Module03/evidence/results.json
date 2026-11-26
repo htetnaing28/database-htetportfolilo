@@ -1,0 +1,357 @@
+{
+  "dashboard_rows": [
+    [
+      "Bielefeld",
+      500,
+      11242176.0
+    ],
+    [
+      "Gütersloh",
+      500,
+      8422344.0
+    ],
+    [
+      "Münster",
+      500,
+      5493504.0
+    ],
+    [
+      "Paderborn",
+      500,
+      2815656.0
+    ]
+  ],
+  "baseline": {
+    "sql": "SELECT c.city,COUNT(DISTINCT c.customer_id),SUM(ol.qty*p.price)\nFROM customer c JOIN orders o USING(customer_id) JOIN order_line ol USING(order_id)\nJOIN product p USING(product_id) WHERE o.ordered_on >= '2025-01-01' AND o.ordered_on < '2026-01-01'\nGROUP BY c.city ORDER BY SUM(ol.qty*p.price) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        12,
+        0,
+        216,
+        "SCAN ol"
+      ],
+      [
+        14,
+        0,
+        45,
+        "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        21,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        24,
+        0,
+        45,
+        "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        27,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        76,
+        0,
+        0,
+        "USE TEMP B-TREE FOR count(DISTINCT)"
+      ],
+      [
+        79,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      207.06559997051954,
+      239.71789999632165,
+      210.39550000568852,
+      208.67969997925684,
+      205.34520002547652
+    ],
+    "median_ms": 208.67969997925684,
+    "min_ms": 205.34520002547652,
+    "max_ms": 239.71789999632165
+  },
+  "ix_orders_ordered_on": {
+    "sql": "SELECT c.city,COUNT(DISTINCT c.customer_id),SUM(ol.qty*p.price)\nFROM customer c JOIN orders o USING(customer_id) JOIN order_line ol USING(order_id)\nJOIN product p USING(product_id) WHERE o.ordered_on >= '2025-01-01' AND o.ordered_on < '2026-01-01'\nGROUP BY c.city ORDER BY SUM(ol.qty*p.price) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        12,
+        0,
+        216,
+        "SCAN ol"
+      ],
+      [
+        14,
+        0,
+        45,
+        "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        21,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        24,
+        0,
+        45,
+        "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        27,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        76,
+        0,
+        0,
+        "USE TEMP B-TREE FOR count(DISTINCT)"
+      ],
+      [
+        79,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      174.63170003611594,
+      175.70960003649816,
+      190.12490002205595,
+      172.45630000252277,
+      170.49910000059754
+    ],
+    "median_ms": 174.63170003611594,
+    "min_ms": 170.49910000059754,
+    "max_ms": 190.12490002205595
+  },
+  "ix_orderline_order": {
+    "sql": "SELECT c.city,COUNT(DISTINCT c.customer_id),SUM(ol.qty*p.price)\nFROM customer c JOIN orders o USING(customer_id) JOIN order_line ol USING(order_id)\nJOIN product p USING(product_id) WHERE o.ordered_on >= '2025-01-01' AND o.ordered_on < '2026-01-01'\nGROUP BY c.city ORDER BY SUM(ol.qty*p.price) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        12,
+        0,
+        216,
+        "SCAN ol"
+      ],
+      [
+        14,
+        0,
+        45,
+        "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        21,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        24,
+        0,
+        45,
+        "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        27,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        76,
+        0,
+        0,
+        "USE TEMP B-TREE FOR count(DISTINCT)"
+      ],
+      [
+        79,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      215.0703999795951,
+      172.05169994849712,
+      179.1553000221029,
+      184.4392999773845,
+      184.6351000131108
+    ],
+    "median_ms": 184.4392999773845,
+    "min_ms": 172.05169994849712,
+    "max_ms": 215.0703999795951
+  },
+  "ix_orderline_product": {
+    "sql": "SELECT c.city,COUNT(DISTINCT c.customer_id),SUM(ol.qty*p.price)\nFROM customer c JOIN orders o USING(customer_id) JOIN order_line ol USING(order_id)\nJOIN product p USING(product_id) WHERE o.ordered_on >= '2025-01-01' AND o.ordered_on < '2026-01-01'\nGROUP BY c.city ORDER BY SUM(ol.qty*p.price) DESC",
+    "parameters": [],
+    "plan": [
+      [
+        12,
+        0,
+        216,
+        "SCAN ol"
+      ],
+      [
+        14,
+        0,
+        45,
+        "SEARCH o USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        21,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        24,
+        0,
+        45,
+        "SEARCH p USING INTEGER PRIMARY KEY (rowid=?)"
+      ],
+      [
+        27,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ],
+      [
+        76,
+        0,
+        0,
+        "USE TEMP B-TREE FOR count(DISTINCT)"
+      ],
+      [
+        79,
+        0,
+        0,
+        "USE TEMP B-TREE FOR ORDER BY"
+      ]
+    ],
+    "samples_ms": [
+      177.01929999748245,
+      169.36549998354167,
+      166.29439999815077,
+      206.93619997473434,
+      171.01669998373836
+    ],
+    "median_ms": 171.01669998373836,
+    "min_ms": 166.29439999815077,
+    "max_ms": 206.93619997473434
+  },
+  "lookup_before": {
+    "sql": "SELECT o.order_id,o.ordered_on,c.name FROM orders o JOIN customer c USING(customer_id) WHERE o.ordered_on=?",
+    "parameters": [
+      "2026-02-14"
+    ],
+    "plan": [
+      [
+        3,
+        0,
+        216,
+        "SCAN o"
+      ],
+      [
+        7,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ]
+    ],
+    "samples_ms": [
+      3.9386030001332983,
+      4.088221999700181,
+      3.9421180001227185,
+      4.206782000255771,
+      3.9932880003470927
+    ],
+    "median_ms": 3.9932880003470927,
+    "min_ms": 3.9386030001332983,
+    "max_ms": 4.206782000255771
+  },
+  "lookup_after": {
+    "sql": "SELECT o.order_id,o.ordered_on,c.name FROM orders o JOIN customer c USING(customer_id) WHERE o.ordered_on=?",
+    "parameters": [
+      "2026-02-14"
+    ],
+    "plan": [
+      [
+        4,
+        0,
+        62,
+        "SEARCH o USING INDEX ix_orders_ordered_on (ordered_on=?)"
+      ],
+      [
+        11,
+        0,
+        45,
+        "SEARCH c USING INTEGER PRIMARY KEY (rowid=?)"
+      ]
+    ],
+    "samples_ms": [
+      0.2257059997646138,
+      0.21602399996481836,
+      0.21390099951531738,
+      0.2278860000660643,
+      0.22518199984915555
+    ],
+    "median_ms": 0.22518199984915555,
+    "min_ms": 0.21390099951531738,
+    "max_ms": 0.2278860000660643
+  },
+  "negative_function": {
+    "sql": "SELECT * FROM orders WHERE date(ordered_on)=?",
+    "parameters": [
+      "2026-02-14"
+    ],
+    "plan": [
+      [
+        2,
+        0,
+        216,
+        "SCAN orders"
+      ]
+    ],
+    "samples_ms": [
+      8.3887999644503,
+      9.33109998004511,
+      7.699700014200062,
+      8.732200018130243,
+      7.731600024271756
+    ],
+    "median_ms": 8.3887999644503,
+    "min_ms": 7.699700014200062,
+    "max_ms": 9.33109998004511
+  },
+  "injection": {
+    "payload": "' OR '1'='1",
+    "unsafe_rows": 2000,
+    "safe_rows": [],
+    "apostrophe": {
+      "sql": "SELECT name FROM customer WHERE name='O'Brien'",
+      "parameters": [],
+      "error": "near \"Brien\": syntax error"
+    }
+  },
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T18:59:36.122248+00:00"
+  }
+}
