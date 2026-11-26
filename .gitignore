@@ -3,14 +3,27 @@
 __pycache__/
 *.pyc
 
-# SQLite databases
+# Local database files
 *.db
 *.db-journal
 *.db-wal
 *.db-shm
+*.duckdb
+*.parquet
 
 # Secrets
 .env
 .env.*
+
 # Generated telemetry data
 Module01/telemetry.csv
+
+# Reproducible experiment data
+Module*/artifacts/
+
+# Temporary files
+.codex_access_test/
+
+# Local course materials
+Course_Materials/
+Course_Materials.zip
