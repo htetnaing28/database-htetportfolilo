@@ -1,0 +1,105 @@
+{
+  "defects": [
+    {
+      "sql": "SELECT j.job_id,j.machine_name FROM maint_job j LEFT JOIN machine m USING(machine_name) WHERE m.machine_name IS NULL",
+      "rows": [
+        [
+          3,
+          "cnc-05"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT part_no,COUNT(*) FROM part GROUP BY part_no HAVING COUNT(*)>1",
+      "rows": [
+        [
+          "P-1003",
+          2
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT part_no,unit_price FROM part WHERE unit_price < '15'",
+      "rows": [
+        [
+          "P-1001",
+          "12.50"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT machine_name,installed FROM machine WHERE installed NOT GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'",
+      "rows": [
+        [
+          "RANDOM-NAME",
+          "unknown"
+        ]
+      ]
+    },
+    {
+      "sql": "SELECT j.job_id,p.description FROM maint_job j JOIN part p ON p.part_no=j.parts_used",
+      "rows": [
+        [
+          2,
+          "Coolant filter"
+        ],
+        [
+          2,
+          "Coolant filter"
+        ],
+        [
+          3,
+          "Ball bearing 6203"
+        ]
+      ]
+    }
+  ],
+  "numeric_comparison": [
+    [
+      "P-1001",
+      "12.50"
+    ],
+    [
+      "P-1003",
+      "9.90"
+    ],
+    [
+      "P-1003",
+      "9.90"
+    ]
+  ],
+  "parts_per_job": [
+    [
+      1,
+      "P-1001,P-1002",
+      2
+    ],
+    [
+      2,
+      "P-1003",
+      1
+    ],
+    [
+      3,
+      "P-1001",
+      1
+    ],
+    [
+      4,
+      null,
+      null
+    ]
+  ],
+  "contract_rejections": [
+    "1 validation error for Machine\ninstalled\n  Input should be a valid date or datetime, input is too short [type=date_from_datetime_parsing, input_value='unknown', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/date_from_datetime_parsing",
+    "1 validation error for Machine\nserial_no\n  Value error, serial numbers must start with 'SN-' [type=value_error, input_value='BAD', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/value_error",
+    "1 validation error for Machine\nmachine_id\n  Input should be greater than or equal to 1 [type=greater_than_equal, input_value=0, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/greater_than_equal"
+  ],
+  "environment": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "sqlite": "3.53.1",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "runs": 5,
+    "utc": "2026-11-15T18:59:28.200406+00:00"
+  }
+}

@@ -24,3 +24,8 @@ If the module is longer than 1 week, you might have several reflections within i
 [Reflection 3](/Reflections/ref03.md)
 
 
+
+
+## Verified technical implementation
+
+See [execution instructions, evidence and student tasks](TECHNICAL.md).
